@@ -7,7 +7,7 @@
   
   <script>
   import Chat from '@/components/Chat.vue';
-  import { getParams } from '@/services/api';// Предположим, что функция getParams находится в файле params.js внутри папки api
+  import { getParams, getUUID } from '@/services/api';// Предположим, что функция getParams находится в файле params.js внутри папки api
   
   export default {
     name: 'SettingsChatSection',
@@ -25,7 +25,7 @@
     },
     async created() {
       try {
-        const params = await getParams();
+        const params = await getParams(this.$route.params.session_id);
         this.font = params.font || 'Arial';
         this.fontColor = params.font_color || '#000000';
         this.bgColor = params.bg_color || '#f7f7f7';

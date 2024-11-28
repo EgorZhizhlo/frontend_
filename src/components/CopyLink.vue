@@ -9,13 +9,13 @@
 </template>
 
 <script setup>
-import { getCookie } from '@/services/api';
+import { getUUID } from '@/services/api';
 import { ref, onMounted } from "vue";
 
 const url = ref("");
 
 onMounted(async () => {
-  let token = await getCookie('auth_token'); // Предполагаем, что функция возвращает токен
+  let token = await getUUID(); // Предполагаем, что функция возвращает токен
 
   if (token) {
     url.value = `http://localhost:5173/chat/${token}`;

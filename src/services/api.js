@@ -25,6 +25,16 @@ export const createSession = async () => {
     throw error;
   }
 };
+// --- UUID ---
+export const getUUID = async () => {
+  try {
+    const response = await apiClient.get('/session/get_uuid', );
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching parameters:', error);
+    throw error;
+  }
+};
 
 // --- LLM ---
 // Загрузка файла
@@ -57,9 +67,9 @@ export const loadUrl = async (url) => {
 };
 
 // Запрос к LLM
-export const requestToLLM = async (question) => {
+export const requestToLLM = async (question, uuid) => {
   try {
-    const response = await apiClient.post('/llm/request', question);
+    const response = await apiClient.post('/llm/request', question, uuid);
     return response.data;
   } catch (error) {
     console.error('Error making LLM request:', error);
@@ -69,9 +79,9 @@ export const requestToLLM = async (question) => {
 
 // --- Параметры ---
 // Получение параметров
-export const getParams = async () => {
+export const getParams = async (uuid) => {
   try {
-    const response = await apiClient.get('/params/get');
+    const response = await apiClient.get(`/params/get?uuid_token=${uuid}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching parameters:', error);

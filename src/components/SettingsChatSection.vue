@@ -8,7 +8,7 @@
     </div>
     <div class="chat-wrapper">
       <Chat :messages="messages" :font="font" :fontColor="fontColor" :bgColor="bgColor" :replyColor="replyColor"
-        :requestColor="requestColor" :logo="logo" @send-message="addMessage" />
+        :requestColor="requestColor" :logo="logo" :UUID="UUID" @send-message="addMessage" />
     </div>
   </div>
 </template>
@@ -16,6 +16,7 @@
 <script>
 import Settings from '@/components/Settings.vue';
 import Chat from '@/components/Chat.vue';
+import { getUUID } from '@/services/api';
 
 
 export default {
@@ -30,6 +31,7 @@ export default {
       requestColor: '#cfe2ff',
       logo: '@/assets/zizlik.jpg',
       messages: [{ id: 1, user: 'AI', text: 'Hello! How can I assist you today?' }],
+      UUID: getUUID(),
     };
   },
   methods: {

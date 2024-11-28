@@ -10,6 +10,7 @@ const props = defineProps([
   "replyColor",
   "requestColor",
   "logo",
+  "UUID",
 ]);
 
 const emit = defineEmits(["send-message"]);
@@ -42,7 +43,7 @@ const sendMessage = async () => {
     try {
       // Делаем запрос к LLM
       emit("send-message", { id: Date.now(), user: "You", text: `${newMessage.value}` });
-      const llmResponse = await requestToLLM(newMessage.value);
+      const llmResponse = await requestToLLM(newMessage.value, UUID.value);
       
       // Отправляем сообщение с результатом от LLM
       emit("send-message", { id: Date.now(), user: "AI", text: `${llmResponse}` });

@@ -122,7 +122,7 @@ Module contains 2 pages: Settings (which is coded in SettingsPage.vue) and Chat 
 
 Settings page contains of Header (HeaderSection.vue), drag-and-drop section (UploadSection.vue), Chat Settings (Settings.vue), Chat (Chat.vue) (Also there are additional prarmeteres for Settings and Chat in SettingsChatSection.vue), Form to recieve link for customised AI (CopyLink.vue) and Footer (Footer.vue)
 
-#Chat page
+# Chat page
 
 Chat page uses already mentioned Chat.vue, practically being subpart of Settings
 

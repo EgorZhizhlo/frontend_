@@ -15,7 +15,7 @@ import UploadSection from '@/components/UploadSection.vue';
 import SettingsChatSection from '@/components/SettingsChatSection.vue';
 import CopyLink from '@/components/CopyLink.vue';
 import FooterSection from '@/components/FooterSection.vue';
-import createSession from '@/components/createSession.vue';
+import createSession from '@/components/CreateSession.vue';
 export default {
   components: {
     HeaderSection,

@@ -37,6 +37,7 @@
 
 <script setup>
 import { ref, watch } from "vue";
+import { updateParams } from '@/services/api'; // Предположим, что функция находится в файле api.js
 
 const font = ref("Arial");
 const fontColor = ref("#000000");
@@ -44,6 +45,7 @@ const bgColor = ref("#f8f9fa");
 const replyColor = ref("#d1e7dd");
 const requestColor = ref("#cfe2ff");
 
+// Функция для обработки изменения аватара
 const handleAvatarChange = (event) => {
   const file = event.target.files[0];
   if (file) {
@@ -51,17 +53,50 @@ const handleAvatarChange = (event) => {
     $emit("update-logo", avatar);
   }
 };
-const emit = defineEmits(['update:font',
+
+// Эмиттер событий
+const emit = defineEmits([
+  'update:font',
   'update:fontColor',
   'update:bgColor',
   'update:replyColor',
-  'update:requestColor']);
+  'update:requestColor'
+]);
 
-watch(font, (newValue) => emit("update:font", newValue));
-watch(fontColor, (newValue) => emit("update:fontColor", newValue));
-watch(bgColor, (newValue) => emit("update:bgColor", newValue));
-watch(replyColor, (newValue) => emit("update:replyColor", newValue));
-watch(requestColor, (newValue) => emit("update:requestColor", newValue));
+// Обновление параметров через API
+const updateParam = async (paramName, value) => {
+  try {
+    await updateParams({ [paramName]: value });
+  } catch (error) {
+    console.error(`Ошибка обновления параметра ${paramName}:`, error);
+  }
+}
+
+// Наблюдатели за изменениями параметров
+watch(font, async (newValue) => {
+  emit("update:font", newValue);
+  await updateParam('font', newValue); // Вызываем обновление через API
+});
+
+watch(fontColor, async (newValue) => {
+  emit("update:fontColor", newValue);
+  await updateParam('fontColor', newValue); // Вызываем обновление через API
+});
+
+watch(bgColor, async (newValue) => {
+  emit("update:bgColor", newValue);
+  await updateParam('bgColor', newValue); // Вызываем обновление через API
+});
+
+watch(replyColor, async (newValue) => {
+  emit("update:replyColor", newValue);
+  await updateParam('replyColor', newValue); // Вызываем обновление через API
+});
+
+watch(requestColor, async (newValue) => {
+  emit("update:requestColor", newValue);
+  await updateParam('requestColor', newValue); // Вызываем обновление через API
+});
 </script>
 
 <style scoped>

@@ -47,6 +47,7 @@ export default {
 .row {
   display: flex;
   gap: 20px;
+  margin: 1%;
 }
 
 .settings-wrapper,

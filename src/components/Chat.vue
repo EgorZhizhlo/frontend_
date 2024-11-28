@@ -1,5 +1,6 @@
 <script setup>
 import { reactive, ref, watch } from "vue";
+import { requestToLLM } from '@/services/api';
 
 const props = defineProps([
   "messages",
@@ -35,10 +36,20 @@ const bubbleStyle = (isUser) => ({
 watch(() => props, updateStyles, { deep: true });
 updateStyles();
 
-const sendMessage = () => {
+const sendMessage = async () => {
+  // Проверяем, есть ли введенное сообщение
   if (newMessage.value.trim()) {
-    emit("send-message", { id: Date.now(), user: "You", text: newMessage.value });
-    newMessage.value = "";
+    try {
+      // Делаем запрос к LLM
+      const llmResponse = await requestToLLM();
+      
+      // Отправляем сообщение с результатом от LLM
+      emit("send-message", { id: Date.now(), user: "You", text: `${newMessage.value}: ${llmResponse}` });
+      newMessage.value = "";
+    } catch (error) {
+      console.error('Error making LLM request:', error);
+      throw error;
+    }
   }
 };
 </script>
@@ -102,9 +113,10 @@ const sendMessage = () => {
 }
 
 .chat-input {
-  width: 100%;
+  width: 98%;
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
+  margin: 1%;
 }
 </style>

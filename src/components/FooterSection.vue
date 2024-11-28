@@ -19,6 +19,7 @@
   padding: 10px 20px;
   border-top: 1px solid #dee2e6;
 }
+
 .footer-links a {
   margin: 0 10px;
   color: #6c757d;

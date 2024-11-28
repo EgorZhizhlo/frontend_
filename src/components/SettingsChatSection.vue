@@ -1,32 +1,14 @@
 <template>
   <div class="row">
     <div class="settings-wrapper">
-      <Settings
-        :font="font"
-        :fontColor="fontColor"
-        :bgColor="bgColor"
-        :replyColor="replyColor"
-        :requestColor="requestColor"
-        :logo="logo"
-        @update:font="updateFont"
-        @update:fontColor="updateFontColor"
-        @update:bgColor="updateBgColor"
-        @update:replyColor="updateReplyColor"
-        @update:requestColor="updateRequestColor"
-        @update-logo="updateLogo"
-      />
+      <Settings :font="font" :fontColor="fontColor" :bgColor="bgColor" :replyColor="replyColor"
+        :requestColor="requestColor" :logo="logo" @update:font="updateFont" @update:fontColor="updateFontColor"
+        @update:bgColor="updateBgColor" @update:replyColor="updateReplyColor" @update:requestColor="updateRequestColor"
+        @update-logo="updateLogo" />
     </div>
     <div class="chat-wrapper">
-      <Chat
-        :messages="messages"
-        :font="font"
-        :fontColor="fontColor"
-        :bgColor="bgColor"
-        :replyColor="replyColor"
-        :requestColor="requestColor"
-        :logo="logo"
-        @send-message="addMessage"
-      />
+      <Chat :messages="messages" :font="font" :fontColor="fontColor" :bgColor="bgColor" :replyColor="replyColor"
+        :requestColor="requestColor" :logo="logo" @send-message="addMessage" />
     </div>
   </div>
 </template>

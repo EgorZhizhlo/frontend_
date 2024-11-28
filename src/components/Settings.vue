@@ -51,11 +51,11 @@ const handleAvatarChange = (event) => {
     $emit("update-logo", avatar);
   }
 };
-const emit = defineEmits(['update:font', 
-'update:fontColor',
-'update:bgColor', 
-'update:replyColor', 
-'update:requestColor']);
+const emit = defineEmits(['update:font',
+  'update:fontColor',
+  'update:bgColor',
+  'update:replyColor',
+  'update:requestColor']);
 
 watch(font, (newValue) => emit("update:font", newValue));
 watch(fontColor, (newValue) => emit("update:fontColor", newValue));
@@ -71,29 +71,35 @@ watch(requestColor, (newValue) => emit("update:requestColor", newValue));
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
 }
+
 h4 {
   margin-bottom: 20px;
   font-weight: bold;
 }
+
 .form-group {
   margin-bottom: 15px;
 }
+
 .form-control {
   width: 100%;
   padding: 8px;
   border-radius: 5px;
   border: 1px solid #ced4da;
 }
+
 input[type="color"] {
   height: 36px;
   border: none;
   cursor: pointer;
 }
+
 .avatar-wrapper {
   display: flex;
   align-items: center;
   gap: 10px;
 }
+
 .btn-avatar {
   padding: 8px 12px;
   background-color: #007bff;
@@ -102,6 +108,7 @@ input[type="color"] {
   border-radius: 5px;
   cursor: pointer;
 }
+
 .btn-avatar:hover {
   background-color: #0056b3;
 }

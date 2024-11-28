@@ -47,30 +47,16 @@ const sendMessage = () => {
   <div class="chat" :style="chatStyle.value">
     <h4 class="chat-title">Chat</h4>
     <div class="chat-window">
-      <div
-        v-for="message in messages"
-        :key="message.id"
-        class="chat-message"
-        :class="{ 'you': message.user === 'You' }"
-      >
-        <img
-          v-if="message.user !== 'You'"
-          :src="logo"
-          alt="Avatar"
-          class="avatar"
-        />
+      <div v-for="message in messages" :key="message.id" class="chat-message"
+        :class="{ 'you': message.user === 'You' }">
+        <img v-if="message.user !== 'You'" :src="logo" alt="Avatar" class="avatar" />
         <div class="bubble" :style="bubbleStyle(message.user === 'You')">
           <strong>{{ message.user }}</strong>: {{ message.text }}
         </div>
       </div>
     </div>
-    <input
-      type="text"
-      class="chat-input"
-      v-model="newMessage"
-      @keyup.enter="sendMessage"
-      placeholder="Type a message..."
-    />
+    <input type="text" class="chat-input" v-model="newMessage" @keyup.enter="sendMessage"
+      placeholder="Type a message..." />
   </div>
 </template>
 
@@ -80,34 +66,41 @@ const sendMessage = () => {
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .chat-title {
   font-weight: bold;
 }
+
 .chat-window {
   height: 300px;
   overflow-y: auto;
   margin-bottom: 10px;
 }
+
 .chat-message {
   display: flex;
   align-items: flex-start;
   margin-bottom: 10px;
 }
+
 .chat-message.you {
   justify-content: flex-end;
 }
+
 .avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
 }
+
 .bubble {
   padding: 10px;
   border-radius: 15px;
   max-width: 70%;
   word-wrap: break-word;
 }
+
 .chat-input {
   width: 100%;
   padding: 10px;

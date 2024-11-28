@@ -12,6 +12,7 @@
   padding: 10px 20px;
   border-bottom: 1px solid #dee2e6;
 }
+
 .title {
   margin: 0;
   font-weight: bold;

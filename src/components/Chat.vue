@@ -15,9 +15,6 @@ const emit = defineEmits(["send-message"]);
 
 const newMessage = ref("");
 
-const messages = reactive()
-
-
 
 // Реакция на изменения настроек
 const chatStyle = ref({});

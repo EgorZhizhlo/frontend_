@@ -1,7 +1,14 @@
 import axios from 'axios';
 
+export const getCookie = (name) => {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([.$?*|{}()[$$\\/+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+};
+
 const apiClient = axios.create({
-  baseURL: 'https://your-api-endpoint.com', // Укажите URL сервера
+  baseURL: 'http://localhost', // Укажите URL сервера
   withCredentials: true, // Для отправки куки (например, auth_token)
   headers: {
     'Content-Type': 'application/json',

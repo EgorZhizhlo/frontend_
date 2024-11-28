@@ -2,9 +2,11 @@
   <footer class="footer">
     <span>CATeam</span>
     <nav class="footer-links">
-      <a href="#">Github</a>
-      <a href="#">Page</a>
-      <a href="#">Page</a>
+      <p> Github</p>
+      <a href="https://github.com/CalifornianNightmare">Egor_B</a>
+      <a href="https://github.com/EgorZhizhlo">Egor_Z</a>
+      <a href="https://github.com/Xiandec">Timur</a>
+      <a href="https://github.com/sussr">Kirill</a>
     </nav>
   </footer>
 </template>

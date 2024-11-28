@@ -51,12 +51,17 @@ const handleAvatarChange = (event) => {
     $emit("update-logo", avatar);
   }
 };
+const emit = defineEmits(['update:font', 
+'update:fontColor',
+'update:bgColor', 
+'update:replyColor', 
+'update:requestColor']);
 
-watch(font, (newValue) => $emit("update:font", newValue));
-watch(fontColor, (newValue) => $emit("update:fontColor", newValue));
-watch(bgColor, (newValue) => $emit("update:bgColor", newValue));
-watch(replyColor, (newValue) => $emit("update:replyColor", newValue));
-watch(requestColor, (newValue) => $emit("update:requestColor", newValue));
+watch(font, (newValue) => emit("update:font", newValue));
+watch(fontColor, (newValue) => emit("update:fontColor", newValue));
+watch(bgColor, (newValue) => emit("update:bgColor", newValue));
+watch(replyColor, (newValue) => emit("update:replyColor", newValue));
+watch(requestColor, (newValue) => emit("update:requestColor", newValue));
 </script>
 
 <style scoped>

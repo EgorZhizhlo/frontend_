@@ -2,30 +2,28 @@
   <div id="app">
     <HeaderSection />
     <UploadSection />
-    <Settings />
-    <Chat />
+    <SettingsChatSection />
     <CopyLink :url="'https://CATeam.best/'" />
     <FooterSection />
+    <createSession />
   </div>
 </template>
 
 <script>
 import HeaderSection from '@/components/HeaderSection.vue';
 import UploadSection from '@/components/UploadSection.vue';
-import Settings from '@/components/Settings.vue';
 import SettingsChatSection from '@/components/SettingsChatSection.vue';
-import Chat from '@/components/Chat.vue';
 import CopyLink from '@/components/CopyLink.vue';
 import FooterSection from '@/components/FooterSection.vue';
+import createSession from '@/components/createSession.vue';
 export default {
   components: {
     HeaderSection,
     UploadSection,
-    Settings,
     SettingsChatSection,
-    Chat,
     FooterSection,
     CopyLink,
+    createSession,
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <script setup>
 import { reactive, ref, watch } from "vue";
-import { requestToLLM } from '@/services/api';
+import { requestToLLM } from "@/services/api";
 
 const props = defineProps([
   "messages",
@@ -16,7 +16,7 @@ const props = defineProps([
 const emit = defineEmits(["send-message"]);
 
 const newMessage = ref("");
-
+const loading = ref(false); // Состояние загрузки
 
 // Реакция на изменения настроек
 const chatStyle = ref({});
@@ -41,16 +41,16 @@ const sendMessage = async () => {
   // Проверяем, есть ли введенное сообщение
   if (newMessage.value.trim()) {
     try {
+      loading.value = true; // Начинаем загрузку
       // Делаем запрос к LLM
       emit("send-message", { id: Date.now(), user: "You", text: `${newMessage.value}` });
       const llmResponse = await requestToLLM(newMessage.value, props.UUID);
-      
+
       // Отправляем сообщение с результатом от LLM
       emit("send-message", { id: Date.now(), user: "AI", text: `${llmResponse.message}` });
       newMessage.value = "";
-    } catch (error) {
-      console.error('Error making LLM request:', error);
-      throw error;
+    } finally {
+      loading.value = false; // Завершаем загрузку
     }
   }
 };
@@ -68,8 +68,17 @@ const sendMessage = async () => {
         </div>
       </div>
     </div>
-    <input type="text" class="chat-input" v-model="newMessage" @keyup.enter="sendMessage"
-      placeholder="Type a message..." />
+    
+    <!-- Ввод сообщения -->
+    <div v-if="!loading" class="chat-input-container">
+      <input type="text" class="chat-input" v-model="newMessage" @keyup.enter="sendMessage"
+        placeholder="Type a message..." />
+    </div>
+    
+    <!-- Индикатор загрузки -->
+    <div v-else class="loader-container">
+      <div class="loader"></div>
+    </div>
   </div>
 </template>
 
@@ -115,10 +124,30 @@ const sendMessage = async () => {
 }
 
 .chat-input {
-  width: 98%;
+  width: 100%;
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  margin: 1%;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+}
+
+.loader {
+  border: 6px solid #f3f3f3; /* Light grey */
+  border-top: 6px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>

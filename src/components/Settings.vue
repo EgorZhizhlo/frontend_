@@ -16,21 +16,12 @@
       <input id="font-color" type="color" v-model="fontColor" />
     </div>
     <div class="form-group">
-      <label for="bg-color">Chat Background</label>
-      <input id="bg-color" type="color" v-model="bgColor" />
-    </div>
-    <div class="form-group">
       <label for="reply-color">Reply Bubble Color</label>
       <input id="reply-color" type="color" v-model="replyColor" />
     </div>
     <div class="form-group">
       <label for="request-color">Request Bubble Color</label>
       <input id="request-color" type="color" v-model="requestColor" />
-    </div>
-    <div class="form-group avatar-wrapper">
-      <label>Change Avatar</label>
-      <button class="btn-avatar" @click="$refs.avatar.click()">Upload Avatar</button>
-      <input type="file" id="avatar" ref="avatar" @change="handleAvatarChange" style="display: none;" />
     </div>
   </div>
 </template>

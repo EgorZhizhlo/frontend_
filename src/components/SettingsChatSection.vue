@@ -16,7 +16,8 @@
 <script>
 import Settings from '@/components/Settings.vue';
 import Chat from '@/components/Chat.vue';
-import { getUUID } from '@/services/api';
+import { getUUID, getParams } from '@/services/api';
+import logo from '@/assets/logo.jpeg';
 
 
 export default {
@@ -29,7 +30,7 @@ export default {
       bgColor: '#f7f7f7',
       replyColor: '#d1e7dd',
       requestColor: '#cfe2ff',
-      logo: '@/assets/zizlik.jpg',
+      logo: logo,
       messages: [{ id: 1, user: 'AI', text: 'Hello! How can I assist you today?' }],
       UUID: null,
     };
@@ -40,6 +41,19 @@ export default {
     } catch (error) {
       console.error('Ошибка при получении UUID:', error);
     }
+    try {
+        const params = await getParams(this.UUID);
+        this.font = params.font || 'Arial';
+        this.fontColor = params.font_color || '#000000';
+        this.bgColor = params.bg_color || '#f7f7f7';
+        this.replyColor = params.reply_color || '#d1e7dd';
+        this.requestColor = params.request_color || '#cfe2ff';
+        
+        // Добавляем начальное сообщение после загрузки параметров
+      } catch (error) {
+        console.error('Error fetching parameters:', error);
+
+      }
   },
   methods: {
     updateFont(value) { this.font = value; },

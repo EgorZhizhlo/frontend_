@@ -1,5 +1,4 @@
 <template>
-    <p>{{ this.$route.params.session_id }} </p>
     <div class="chat-wrapper">
       <Chat :messages="messages" :font="font" :fontColor="fontColor" :bgColor="bgColor" :replyColor="replyColor"
             :requestColor="requestColor" :logo="logo" :UUID="this.$route.params.session_id" @send-message="addMessage"/>
@@ -9,6 +8,7 @@
   <script>
   import Chat from '@/components/Chat.vue';
   import { getParams, getUUID } from '@/services/api';// Предположим, что функция getParams находится в файле params.js внутри папки api
+  import logo from '@/assets/logo.jpeg';
   
   export default {
     name: 'SettingsChatSection',
@@ -20,7 +20,7 @@
         bgColor: '',
         replyColor: '',
         requestColor: '',
-        logo: '',
+        logo: logo,
         messages: [],
       };
     },
@@ -32,7 +32,6 @@
         this.bgColor = params.bg_color || '#f7f7f7';
         this.replyColor = params.reply_color || '#d1e7dd';
         this.requestColor = params.request_color || '#cfe2ff';
-        this.logo = params.logo || '@/assets/zorlik.jpg';
         
         // Добавляем начальное сообщение после загрузки параметров
         this.messages.push({ id: 1, user: 'AI', text: 'Hello! How can I assist you today?' });
@@ -44,7 +43,6 @@
         this.bgColor = '#f7f7f7';
         this.replyColor = '#d1e7dd';
         this.requestColor = '#cfe2ff';
-        this.logo = '@/assets/zorlik.jpg';
       }
     },
     methods: {

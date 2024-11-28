@@ -9,17 +9,17 @@ export default defineConfig({
   server: {
     proxy: {
       '/session': {
-        target: 'http://193.227.240.27:8080',
+        target: 'http://193.227.240.27',
         changeOrigin: true,
         secure: false,
       },
       '/llm': {
-        target: 'http://193.227.240.27:8080',
+        target: 'http://193.227.240.27',
         changeOrigin: true,
         secure: false,
       },
       '/params': {
-        target: 'http://193.227.240.27:8080',
+        target: 'http://193.227.240.27',
         changeOrigin: true,
         secure: false,
       },

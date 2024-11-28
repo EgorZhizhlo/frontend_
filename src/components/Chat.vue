@@ -41,7 +41,7 @@ const sendMessage = async () => {
   if (newMessage.value.trim()) {
     try {
       // Делаем запрос к LLM
-      const llmResponse = await requestToLLM();
+      const llmResponse = await requestToLLM(newMessage.value);
       
       // Отправляем сообщение с результатом от LLM
       emit("send-message", { id: Date.now(), user: "You", text: `${newMessage.value}: ${llmResponse}` });

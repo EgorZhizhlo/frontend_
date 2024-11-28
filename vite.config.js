@@ -6,6 +6,25 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    proxy: {
+      '/session': {
+        target: 'http://193.227.240.27',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/llm': {
+        target: 'http://193.227.240.27',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/params': {
+        target: 'http://193.227.240.27',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
   plugins: [
     vue(),
     vueDevTools(),
@@ -16,3 +35,4 @@ export default defineConfig({
     },
   },
 })
+

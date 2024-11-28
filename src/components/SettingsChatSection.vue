@@ -14,8 +14,9 @@
 </template>
 
 <script>
-import Settings from './Settings.vue';
-import Chat from './Chat.vue';
+import Settings from '@/components/Settings.vue';
+import Chat from '@/components/Chat.vue';
+
 
 export default {
   name: 'SettingsChatSection',
@@ -27,7 +28,7 @@ export default {
       bgColor: '#f7f7f7',
       replyColor: '#d1e7dd',
       requestColor: '#cfe2ff',
-      logo: 'zizlik.jpg',
+      logo: '@/assets/zizlik.jpg',
       messages: [{ id: 1, user: 'AI', text: 'Hello! How can I assist you today?' }],
     };
   },

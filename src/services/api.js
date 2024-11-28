@@ -8,7 +8,7 @@ export const getCookie = (name) => {
 };
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost', // Укажите URL сервера
+  baseURL: 'http://localhost:5173', // Укажите URL сервера
   withCredentials: true, // Для отправки куки (например, auth_token)
   headers: {
     'Content-Type': 'application/json',
@@ -57,9 +57,9 @@ export const loadUrl = async (url) => {
 };
 
 // Запрос к LLM
-export const requestToLLM = async () => {
+export const requestToLLM = async (question) => {
   try {
-    const response = await apiClient.post('/llm/request');
+    const response = await apiClient.post('/llm/request', question);
     return response.data;
   } catch (error) {
     console.error('Error making LLM request:', error);

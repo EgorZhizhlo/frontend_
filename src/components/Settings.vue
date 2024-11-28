@@ -50,7 +50,7 @@ const handleAvatarChange = (event) => {
   const file = event.target.files[0];
   if (file) {
     const avatar = URL.createObjectURL(file);
-    $emit("update-logo", avatar);
+    emit("update-logo", avatar);
   }
 };
 
@@ -60,12 +60,21 @@ const emit = defineEmits([
   'update:fontColor',
   'update:bgColor',
   'update:replyColor',
-  'update:requestColor'
+  'update:requestColor',
+  'update-logo'
 ]);
 
 // Обновление параметров через API
 const updateParam = async (paramName, value) => {
   try {
+    const params = {
+      font: font,
+      font_color: fontColor,
+      bg_color: bgColor,
+      reply_color: replyColor,
+      request_color: requestColor,
+    };
+    params[paramName] = value
     await updateParams({ [paramName]: value });
   } catch (error) {
     console.error(`Ошибка обновления параметра ${paramName}:`, error);
@@ -80,22 +89,22 @@ watch(font, async (newValue) => {
 
 watch(fontColor, async (newValue) => {
   emit("update:fontColor", newValue);
-  await updateParam('fontColor', newValue); // Вызываем обновление через API
+  await updateParam('font_color', newValue); // Вызываем обновление через API
 });
 
 watch(bgColor, async (newValue) => {
   emit("update:bgColor", newValue);
-  await updateParam('bgColor', newValue); // Вызываем обновление через API
+  await updateParam('bg_color', newValue); // Вызываем обновление через API
 });
 
 watch(replyColor, async (newValue) => {
   emit("update:replyColor", newValue);
-  await updateParam('replyColor', newValue); // Вызываем обновление через API
+  await updateParam('reply_color', newValue); // Вызываем обновление через API
 });
 
 watch(requestColor, async (newValue) => {
   emit("update:requestColor", newValue);
-  await updateParam('requestColor', newValue); // Вызываем обновление через API
+  await updateParam('request_color', newValue); // Вызываем обновление через API
 });
 </script>
 

@@ -118,12 +118,54 @@ docker logs <container-id>
 
 Module contains 2 pages: Settings (which is coded in SettingsPage.vue) and Chat (ChatView).
 
-# Settings page 
+#### Settings page 
 
 Settings page contains of Header (HeaderSection.vue), drag-and-drop section (UploadSection.vue), Chat Settings (Settings.vue), Chat (Chat.vue) (Also there are additional prarmeteres for Settings and Chat in SettingsChatSection.vue), Form to recieve link for customised AI (CopyLink.vue) and Footer (Footer.vue)
 
-# Chat page
+#### Chat page
 
 Chat page uses already mentioned Chat.vue, practically being subpart of Settings
+
+---
+
+# Using AIistant
+
+#### 1. **How to Upload Files**
+
+1. Go to the **"Files"** section at the top of the page.
+2. Click on the **"Drag and drop files here"** area.
+3. Drag and drop a file into the designated area or click it to select a file from your computer.
+4. Once the file is uploaded, it will be processed, and you can use it in your interaction with the AI.
+
+## 2. **How to Chat with the AI**
+
+1. The chat window is located on the right side of the interface.
+2. Type your query into the text input field below the chat window.
+3. Press **Enter** or the send button to submit your message.
+4. The AI will respond in text format. Feel free to ask any question or request any task.
+
+## 3. **Customizing Chat Colors and Interface**
+
+1. In the **"Chat Settings"** section, you can customize the chat appearance:
+   - **Font:** Select a font from the dropdown menu.
+   - **Text Color:** Click the color box to choose the text color.
+   - **Chat Background:** Adjust the background color of the chat.
+   - **Reply Bubble Color:** Select a color for the AI's response bubbles.
+   - **Request Bubble Color:** Set the color for your message bubbles.
+2. Changes will apply immediately to the interface.
+
+## 4. **Changing Your Avatar**
+
+1. Click the **"Upload Avatar"** button.
+2. Select an image from your device.
+3. Once uploaded, the avatar will appear next to model's replies
+
+## 5. **Sharing a Link to the Chat**
+
+1. At the bottom of the page, you’ll find the **"Shareable Link"** field.
+2. Click the **"Copy"** button to copy the unique link for the current chat.
+3. Share the link to revisit this chat or send it to another user.
+
+---
 
 # frontend_

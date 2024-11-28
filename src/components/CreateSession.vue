@@ -16,12 +16,13 @@ export default {
     },
     methods: {
         async checkAndCreateSession() {
-            this.sessionToken = getCookie('session_token');
+            this.sessionToken = getCookie('auth_token');
 
             if (!this.sessionToken) {
                 try {
                     const sessionData = await createSession();
-                    this.sessionToken = sessionData.token; // Предполагается, что возвращаемый объект содержит ключ 'token'
+
+                    document.cookie = `auth_token=${sessionData.token}`;
                     console.log('Session created successfully:', sessionData);
                 } catch (error) {
                     console.error('Error creating session:', error);

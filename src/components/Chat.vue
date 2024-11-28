@@ -41,10 +41,11 @@ const sendMessage = async () => {
   if (newMessage.value.trim()) {
     try {
       // Делаем запрос к LLM
+      emit("send-message", { id: Date.now(), user: "You", text: `${newMessage.value}` });
       const llmResponse = await requestToLLM(newMessage.value);
       
       // Отправляем сообщение с результатом от LLM
-      emit("send-message", { id: Date.now(), user: "You", text: `${newMessage.value}: ${llmResponse}` });
+      emit("send-message", { id: Date.now(), user: "AI", text: `${llmResponse}` });
       newMessage.value = "";
     } catch (error) {
       console.error('Error making LLM request:', error);

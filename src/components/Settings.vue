@@ -68,14 +68,15 @@ const emit = defineEmits([
 const updateParam = async (paramName, value) => {
   try {
     const params = {
-      font: font,
-      font_color: fontColor,
-      bg_color: bgColor,
-      reply_color: replyColor,
-      request_color: requestColor,
+      font: font.value,
+      font_color: fontColor.value,
+      bg_color: bgColor.value,
+      reply_color: replyColor.value,
+      request_color: requestColor.value,
+      logo: avatar.value
     };
     params[paramName] = value
-    await updateParams({ [paramName]: value });
+    await updateParams(params);
   } catch (error) {
     console.error(`Ошибка обновления параметра ${paramName}:`, error);
   }

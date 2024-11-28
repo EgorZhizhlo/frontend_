@@ -1,8 +1,65 @@
-<script setup>
-import Chat from '@/components/Chat.vue';
-</script>
-
 <template>
-    <h1>Chat Session ID: {{ $route.params.session_id }}</h1>
-    <Chat></Chat>
-</template>
+    <div class="chat-wrapper">
+      <Chat :messages="messages" :font="font" :fontColor="fontColor" :bgColor="bgColor" :replyColor="replyColor"
+            :requestColor="requestColor" :logo="logo" @send-message="addMessage"/>
+    </div>
+  </template>
+  
+  <script>
+  import Chat from '@/components/Chat.vue';
+  import { getParams } from '@/services/api';// Предположим, что функция getParams находится в файле params.js внутри папки api
+  
+  export default {
+    name: 'SettingsChatSection',
+    components: { Chat },
+    data() {
+      return {
+        font: '',
+        fontColor: '',
+        bgColor: '',
+        replyColor: '',
+        requestColor: '',
+        logo: '',
+        messages: [],
+      };
+    },
+    async created() {
+      try {
+        const params = await getParams();
+        this.font = params.font || 'Arial';
+        this.fontColor = params.font_color || '#000000';
+        this.bgColor = params.bg_color || '#f7f7f7';
+        this.replyColor = params.reply_color || '#d1e7dd';
+        this.requestColor = params.request_color || '#cfe2ff';
+        this.logo = params.logo || '@/assets/zorlik.jpg';
+        
+        // Добавляем начальное сообщение после загрузки параметров
+        this.messages.push({ id: 1, user: 'AI', text: 'Hello! How can I assist you today?' });
+      } catch (error) {
+        console.error('Error fetching parameters:', error);
+        // В случае ошибки можно установить значения по умолчанию
+        this.font = 'Arial';
+        this.fontColor = '#000000';
+        this.bgColor = '#f7f7f7';
+        this.replyColor = '#d1e7dd';
+        this.requestColor = '#cfe2ff';
+        this.logo = '@/assets/zorlik.jpg';
+      }
+    },
+    methods: {
+      addMessage(message) {
+        this.messages.push(message);
+      },
+    },
+  };
+  </script>
+  
+  <style scoped>
+  .chat-wrapper {
+    flex: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #ffffff;
+  }
+  </style>

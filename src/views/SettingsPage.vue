@@ -1,11 +1,11 @@
 <template>
   <div id="app">
+    <createSession />
     <HeaderSection />
     <UploadSection />
     <SettingsChatSection />
-    <CopyLink :url="'https://CATeam.best/'" />
+    <CopyLink />
     <FooterSection />
-    <createSession />
   </div>
 </template>
 

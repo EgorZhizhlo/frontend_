@@ -9,10 +9,24 @@
 </template>
 
 <script setup>
-const props = defineProps(["url"]);
+import { getCookie } from '@/services/api';
+import { ref, onMounted } from "vue";
+
+const url = ref("");
+
+onMounted(async () => {
+  let token = await getCookie('auth_token'); // Предполагаем, что функция возвращает токен
+
+  if (token) {
+    url.value = `http://localhost:5173/chat/${token}`;
+  }
+});
 
 const copyToClipboard = () => {
-  navigator.clipboard.writeText(props.url).then(() => {
+  navigator.clipboard.writeText(url.value).then(() => {
+    alert("Link copied to clipboard!");
+  }).catch((err) => {
+    console.error(err);
   });
 };
 </script>

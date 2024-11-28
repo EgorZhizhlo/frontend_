@@ -8,7 +8,7 @@ export const getCookie = (name) => {
 };
 
 const apiClient = axios.create({
-  baseURL: 'http://193.227.240.27:8080', // Укажите URL сервера
+  baseURL: 'http://193.227.240.27', // Укажите URL сервера
   withCredentials: true, // Для отправки куки (например, auth_token)
   headers: {
     'Content-Type': 'application/json',

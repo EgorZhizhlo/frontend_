@@ -1,40 +1,41 @@
-# Frontend module
+# Фронтенд модуль
 
-# Introduction
+# Введение
 
-This project is a web application built with Vue.js that connects to an API. It is containerized using Docker for easy deployment and scalability. The application provides a user-friendly interface for interacting with the backend services.
-Technologies Used
+Этот проект представляет собой веб-приложение, созданное с помощью Vue.js, которое подключается к API. Оно упаковано с использованием Docker для простоты развертывания и масштабируемости. Приложение предоставляет удобный интерфейс для взаимодействия с серверными службами.
+Используемые технологии:
 
-    - Vue.js: A progressive JavaScript framework for building user interfaces.
-    - Docker: A platform for developing, shipping, and running applications in containers.
-    - JavaScript: The programming language used for frontend development.
-    - API: The backend service that the frontend communicates with.
+    - Vue.js: Прогрессивный фреймворк JavaScript для создания пользовательских интерфейсов.
+    - Docker: Платформа для разработки, отправки и запуска приложений в контейнерах.
+    - JavaScript: Язык программирования, используемый для разработки интерфейса.
+    - API: Серверная служба, с которой взаимодействует интерфейс.
 
-# Prerequisites
-### System Requirements
+# Предварительные требования
+### Системные требования
 
-    Operating System: Windows, macOS, or Linux.
+    Операционная система: Windows, macOS или Linux.
 
-### Software Requirements
+### Требования к программному обеспечению
 
-    Docker: Ensure Docker is installed on your machine. You can download it from Docker's official website.
-    Node.js: (Optional) Required for development purposes. Download from Node.js official website.
+    Docker: Убедитесь, что на вашем компьютере установлен Docker. Вы можете скачать его с официального сайта Docker.
+    Node.js : (Необязательно) Требуется для целей разработки. Скачать с Node.js официальный веб-сайт.
 
-# Getting Started
-### Clone the Repository
+# Приступаем к работе
+### Клонировать репозиторий
 
-To get started, clone the project repository to your local machine:
+Для начала клонируйте репозиторий проекта на свой локальный компьютер:
 
 ```
+
 bash
 
 https://github.com/EgorZhizhlo/frontend_.git
 cd repo
 ```
 
-### Build the Docker Image
+### Создайте образ Docker
 
-Navigate to the project directory and build the Docker image using the provided Dockerfile:
+Перейдите в каталог проекта и создайте образ Docker, используя предоставленный файл Docker:
 
 ```
 bash
@@ -42,10 +43,10 @@ bash
 docker build -t my-vue-app .
 ```
 
-### Running the Application
-Run the Docker Container
+### Запуск приложения
+Запустите контейнер Docker
 
-After building the image, you can run the application in a Docker container:
+После создания образа вы можете запустить приложение в контейнере Docker:
 
 ```
 bash
@@ -53,118 +54,98 @@ bash
 docker run -p 8080:80 my-vue-app
 ```
 
-# Accessing the Application
+# Доступ к приложению
 
-Once the container is running, you can access the application by opening a web browser and navigating to:
+После запуска контейнера вы можете получить доступ к приложению, открыв веб-браузер и перейдя по ссылке:
 
 1) http://127.0.0.1:8080
 2) http://172.17.0.2:8080
 
-# Application Structure
+# Структура приложения
 
-The project directory structure is as follows:
+Структура каталогов проекта выглядит следующим образом:
 
-Code
+Код
 
 ```
 /my-vue-app
 │
-├── Dockerfile          # Instructions to build the Docker image
-├── package.json        # Project metadata and dependencies
-├── src/               # Source code for the Vue.js application
-│   ├── components/     # Vue components
-│   ├── views/          # Application views
-│   └── App.vue         # Main Vue component
-└── public/             # Static assets
+├── Dockerfile # Инструкции по созданию образа Docker
+├── package.json # Метаданные и зависимости проекта
+├── src/ # Исходный код для Vue.js приложения
+│ ├── components/ # компоненты Vue
+│ ├── views/ # Просмотры приложений
+│ └── App.vue # Основной компонент Vue
+└── public/ # Статические ресурсы
 ```
 
-# Frontend Details
-### Vue.js Overview
+# Подробности о интерфейсе
+### Vue.js Обзор
 
-The frontend is built using Vue.js, which allows for the creation of reactive components. The main entry point is App.vue, which serves as the root component.
-API Connection
+Интерфейс построен с использованием Vue.js, что позволяет создавать реактивные компоненты. Основной точкой входа является App.vue, который служит корневым компонентом.
 
-The application connects to the backend API to fetch and send data. The API endpoints are defined in the src/services/api.js file. Ensure that the API is running and accessible from the frontend.
-Configuration
-Environment Variables
+Подключение к API
 
-You may need to set the following environment variables for the application to function correctly:
+Приложение подключается к серверной части API для получения и отправки данных. API endpoints определены в файле src/services/api.js. Убедитесь, что API запущен и доступен из внешнего интерфейса.
+Конфигурация
+Переменные среды
 
-    VUE_APP_API_URL: The base URL for the API
+Для корректной работы приложения может потребоваться задать следующие переменные среды:
 
-Configuration Files
+    VUE_APP_API_URL: Базовый URL-адрес для API
 
-The main configuration file is package.json, which includes project dependencies and scripts.
-Troubleshooting
-Common Issues
+Файлы конфигурации
 
-    Container Fails to Start: Check the Docker logs for errors.
+Основным конфигурационным файлом является package.json, который включает в себя зависимости проекта и скрипты.
 
-bash
 
-    docker logs <container-id>
+## Взаимодействие с пользователем
 
-    Cannot Access Application: Ensure the container is running and the correct port is mapped.
+Модуль содержит 2 страницы: Настройки (которая закодирована в SettingsPage.vue) и Чат (ChatView).
 
-Logs
+#### Страница настроек 
 
-To view logs for debugging, use the following command:
+Страница настроек содержит заголовок (HeaderSection.vue), раздел для перетаскивания (UploadSection.vue), настройки чата (Settings.vue), Чат (Chat.vue) (Также есть дополнительные параметры для настроек и чата в SettingsChatSection.vue), форму для получения ссылки на настраиваемый AI. (CopyLink.vue) и нижний колонтитул (Footer.vue)
 
-bash
+#### Страница чата
 
-docker logs <container-id>
-
-## User Experience
-
-Module contains 2 pages: Settings (which is coded in SettingsPage.vue) and Chat (ChatView).
-
-#### Settings page 
-
-Settings page contains of Header (HeaderSection.vue), drag-and-drop section (UploadSection.vue), Chat Settings (Settings.vue), Chat (Chat.vue) (Also there are additional prarmeteres for Settings and Chat in SettingsChatSection.vue), Form to recieve link for customised AI (CopyLink.vue) and Footer (Footer.vue)
-
-#### Chat page
-
-Chat page uses already mentioned Chat.vue, practically being subpart of Settings
+На странице чата используется уже упомянутый Chat.vue, который фактически является частью настроек
 
 ---
 
-# Using AIistant
+# Использование AIistant
 
-#### 1. **How to Upload Files**
+#### 1. **Как загружать файлы**
 
-1. Go to the **"Files"** section at the top of the page.
-2. Click on the **"Drag and drop files here"** area.
-3. Drag and drop a file into the designated area or click it to select a file from your computer.
-4. Once the file is uploaded, it will be processed, and you can use it in your interaction with the AI.
+1. Перейдите в раздел "Файлы"** в верхней части страницы.
+2. Нажмите на область ** "Перетащить файлы сюда"**.
+3. Перетащите файл в указанную область или щелкните по нему, чтобы выбрать файл с вашего компьютера.
+4. Как только файл будет загружен, он будет обработан, и вы сможете использовать его при взаимодействии с ИИ.
 
-## 2. **How to Chat with the AI**
+## 2. ** Как общаться с ИИ**
 
-1. The chat window is located on the right side of the interface.
-2. Type your query into the text input field below the chat window.
-3. Press **Enter** or the send button to submit your message.
-4. The AI will respond in text format. Feel free to ask any question or request any task.
+1. Окно чата расположено в правой части интерфейса.
+2. Введите свой запрос в поле ввода текста под окном чата.
+3. Нажмите **Enter** или кнопку "Отправить", чтобы отправить свое сообщение.
+4. Искусственный интеллект ответит в текстовом формате. Не стесняйтесь задавать любые вопросы).
 
-## 3. **Customizing Chat Colors and Interface**
+## 3. ** Настройка цветов и интерфейса чата**
 
-1. In the **"Chat Settings"** section, you can customize the chat appearance:
-   - **Font:** Select a font from the dropdown menu.
-   - **Text Color:** Click the color box to choose the text color.
-   - **Chat Background:** Adjust the background color of the chat.
-   - **Reply Bubble Color:** Select a color for the AI's response bubbles.
-   - **Request Bubble Color:** Set the color for your message bubbles.
-2. Changes will apply immediately to the interface.
+1. В ** разделе "Настройки чата"** вы можете настроить внешний вид чата:
+   - ** Шрифт:** Выберите шрифт из выпадающего меню.
+   - ** Цвет текста:** Нажмите на поле "Цвет", чтобы выбрать цвет текста.
+   - ** Фон чата:** Настройте цвет фона чата.
+   - ** Цвет пузырьков ответа:** Выберите цвет пузырьков ответа искусственного интеллекта.
+   - ** Цвет пузырьков запроса:** Установите цвет пузырьков ваших сообщений.
+2. Изменения в интерфейсе будут внесены немедленно.
 
-## 4. **Changing Your Avatar**
 
-1. Click the **"Upload Avatar"** button.
-2. Select an image from your device.
-3. Once uploaded, the avatar will appear next to model's replies
 
-## 5. **Sharing a Link to the Chat**
+## 4. ** Поделиться ссылкой на чат**
 
-1. At the bottom of the page, you’ll find the **"Shareable Link"** field.
-2. Click the **"Copy"** button to copy the unique link for the current chat.
-3. Share the link to revisit this chat or send it to another user.
+1. Внизу страницы вы найдете поле **"Shareable Link"**.
+2. Нажмите кнопку **"Copy"**, чтобы скопировать уникальную ссылку для текущего чата.
+3. Используйте ссылку для интеграции бота в своих струкртурах.
 
 ---
 

@@ -1,7 +1,8 @@
 <template>
+    <p>{{ this.$route.params.session_id }} </p>
     <div class="chat-wrapper">
       <Chat :messages="messages" :font="font" :fontColor="fontColor" :bgColor="bgColor" :replyColor="replyColor"
-            :requestColor="requestColor" :logo="logo" @send-message="addMessage"/>
+            :requestColor="requestColor" :logo="logo" :UUID="this.$route.params.session_id" @send-message="addMessage"/>
     </div>
   </template>
   

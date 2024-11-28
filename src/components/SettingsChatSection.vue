@@ -31,8 +31,15 @@ export default {
       requestColor: '#cfe2ff',
       logo: '@/assets/zizlik.jpg',
       messages: [{ id: 1, user: 'AI', text: 'Hello! How can I assist you today?' }],
-      UUID: getUUID(),
+      UUID: null,
     };
+  },
+  async created() {
+    try {
+      this.UUID = await getUUID();
+    } catch (error) {
+      console.error('Ошибка при получении UUID:', error);
+    }
   },
   methods: {
     updateFont(value) { this.font = value; },

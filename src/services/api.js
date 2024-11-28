@@ -69,7 +69,7 @@ export const loadUrl = async (url) => {
 // Запрос к LLM
 export const requestToLLM = async (question, uuid) => {
   try {
-    const response = await apiClient.post('/llm/request', question, uuid);
+    const response = await apiClient.post(`/llm/request?question=${question}&uuid_token=${uuid}`);
     return response.data;
   } catch (error) {
     console.error('Error making LLM request:', error);
